@@ -28,7 +28,7 @@ client.on("ready", () => { console.log('\x1b[42m', 'Bot Loaded', "\x1b[0m") })
 client.on("messageCreate", (message) => {
     if (message.author.bot) return
 
-    else if (message.content === `${prefix} piada`) {
+    else if (message.content === `${prefix}piada`) {
         let piadas = [
             '**O que que tem 50 pernas e não anda?**\n25 Cadeirantes.',
             '**Por que que o menino caiu do balanço?**\nPorque eu cortei as pernas dele.',
@@ -46,7 +46,7 @@ client.on("messageCreate", (message) => {
         ]
         message.channel.send(piadas[random(0, piadas.length)])
     }
-    else if (message.content === `${prefix} bruno`) {
+    else if (message.content === `${prefix}bruno`) {
         let brunolinks = [
             //Here you can put many image links that will be send randomly
             //when the command (bot prefix) bruno is issued.
@@ -63,7 +63,7 @@ client.on("messageCreate", (message) => {
         ]
         message.channel.send(brunolinks[random(0, brunolinks.length)])
     }
-    else if (message.content === `${prefix} pedro`) {
+    else if (message.content === `${prefix}pedro`) {
         let pedrolinks = [
             'https://cdn.discordapp.com/attachments/949789629119348756/955195762910838804/EnzcewMXIAIwJ8_.png',
             'https://cdn.discordapp.com/attachments/949789629119348756/955196121704173588/kvYlqk8Mph-53gZxp1k1UgSx_R3jn77KLKwf-vCeBrg.png',
@@ -76,16 +76,16 @@ client.on("messageCreate", (message) => {
         ]
         message.channel.send(pedrolinks[random(0, pedrolinks.length)])
     }
-    else if (message.content === `${prefix} penis`) {
+    else if (message.content === `${prefix}penis`) {
         message.channel.send('https://lastfm.freetls.fastly.net/i/u/ar0/b08b289213531bbc7e575c778c41ee6c.jpg')
     }
     else if (message.content === `${prefix} angola`) {
         message.channel.send('Onde o bruno mora')
     }
-    else if (message.content === `${prefix} gay`) {
+    else if (message.content === `${prefix}gay`) {
         message.channel.send('Não pode gay no servidor, desculpe')
     }
-    else if (message.content === `${prefix} help`) {
+    else if (message.content === `${prefix}help`) {
         let helpEmbed = {
             color: 0x0099ff,
             title: 'Comandos do bot:',
@@ -184,52 +184,52 @@ client.on("messageCreate", (message) => {
         }
         message.channel.send({ embeds: [helpEmbed] })
     }
-    else if (message.content === `${prefix} gabriel`) {
+    else if (message.content === `${prefix}gabriel`) {
         message.channel.send('Para com isso Gabriel caralho')
     }
-    else if (message.content === `${prefix} lopinho`) {
+    else if (message.content === `${prefix}lopinho`) {
         message.channel.send('Namorou 6 meses no LOL e era homem')
     }
-    else if (message.content === `${prefix} hindrigo`) {
+    else if (message.content === `${prefix}hindrigo`) {
         message.channel.send('Gay, femboy, nunca online.\nSe tiver online, espanca o teclado.')
     }
-    else if (message.content === `${prefix} luigi`) {
+    else if (message.content === `${prefix}luigi`) {
         message.channel.send('Cheira queijo e faz tique toque (cheira pó)')
     }
-    else if (message.content === `${prefix} homossexual`) {
+    else if (message.content === `${prefix}homossexual`) {
         message.channel.send('Palavra chique pra gay, tambem nao pode aqui!')
     }
-    else if (message.content === `${prefix} izan`) {
+    else if (message.content === `${prefix}izan`) {
         message.channel.send('O cara mais gostoso e criador desse bot')
     }
-    else if (message.content === `${prefix} creepin`) {
+    else if (message.content === `${prefix}creepin`) {
         message.channel.send('Outro semideus que ajudou na criacao do BOT (tem alseimer)')
     }
-    else if (message.content === `${prefix} deus`) {
+    else if (message.content === `${prefix}deus`) {
         message.channel.send('Não existe, mas aqui no server é o Izan')
     }
-    else if (message.content === `${prefix} sus`) {
+    else if (message.content === `${prefix}sus`) {
         message.channel.send('https://youtu.be/Ku3I9aemw9I')
     }
-    else if (message.content === `${prefix} guizin`) {
+    else if (message.content === `${prefix}guizin`) {
         message.channel.send('Ta dormindo ate hoje')
     }
-    else if (message.content === `${prefix} gustavo`) {
+    else if (message.content === `${prefix}gustavo`) {
         message.channel.send('Tijolo')
     }
-    else if (message.content === `${prefix} genshinimpact`) {
+    else if (message.content === `${prefix}genshinimpact`) {
         message.reply('É crime, vc vai ser banido se falar denovo')
     }
-    else if (message.content === `${prefix} denis`) {
+    else if (message.content === `${prefix}denis`) {
         message.channel.send('╭ᑎ╮')
     }
-    else if (message.content === `${prefix} tutao`) {
+    else if (message.content === `${prefix}tutao`) {
         message.channel.send('https://youtu.be/bNtLIDTmn_o')
     }
-    else if (message.content === `${prefix} hel`) {
+    else if (message.content === `${prefix}hel`) {
         message.reply('Escreve direito imbecil é Help')
     }
-    else if (message.content === `${prefix} piplup`) {
+    else if (message.content === `${prefix}piplup`) {
         message.channel.send('https://cdn.discordapp.com/attachments/954933541051985920/955186822470836244/MicrosoftTmghfghmgeams-image.png')
     }
     else if (message.content.startsWith(prefix)) {
