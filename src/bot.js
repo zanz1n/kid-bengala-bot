@@ -78,7 +78,7 @@ client.on("messageCreate", (message) => {
     else if (message.content === `${prefix}genshinimpact`) { message.reply('É crime, vc vai ser banido se falar denovo') }
     else if (message.content === `${prefix}denis`) { message.channel.send('╭ᑎ╮') }
     else if (message.content === `${prefix}hel`) { message.reply('Escreve direito imbecil é Help') }
-    else if (message.content === `${prefix}luciano`) { message.reply('**Nyan cat**\nConsta na fila do ban') }
+    else if (message.content === `${prefix}luciano`) { message.reply('**Nyan cat**\nConsta na fila do ban no server') }
     else if (message.content === `${prefix}piplup`) {
         message.channel.send('https://cdn.discordapp.com/attachments/954933541051985920/955186822470836244/MicrosoftTmghfghmgeams-image.png')
     }
