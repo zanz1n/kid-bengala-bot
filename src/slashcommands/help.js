@@ -3,7 +3,7 @@ const { Discord, Client, Intents, MessageEmbed } = require('discord.js')
 module.exports = {
     name: "help",
     description: "The help command",
-    execute(message, args) {
+    execute(interaction) {
         const embed = {
             color: 0x0099ff,
             title: 'Comandos do bot:',
@@ -96,10 +96,10 @@ module.exports = {
             ],
 
             footer: {
-                text: `Requested by: ${message.author.username}`,
-                icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.webp`,
+                text: `Requested by: ${interaction.user.username}`,
+                icon_url: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp`,
             },
         }
-        message.channel.send({ embeds: [embed] })
+        interaction.reply({ embeds: [embed] })
     }
 }
