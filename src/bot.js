@@ -57,17 +57,17 @@ client.on("messageCreate", (message) => {
 
     if (message.content === prefix + help.name) help.execute(message)
 
-    else if (message.content === prefix + piada.name) piada.execute(message, args)
+    else if (message.content === prefix + piada.name) piada.execute(message)
 
-    else if (message.content === prefix + pedro.name) pedro.execute(message, args)
+    else if (message.content === prefix + pedro.name) pedro.execute(message)
 
-    else if (message.content === prefix + bruno.name) bruno.execute(message, args)
+    else if (message.content === prefix + bruno.name) bruno.execute(message)
 
-    else if (message.content === prefix + penis.name) penis.execute(message, args)
+    else if (message.content === prefix + penis.name) penis.execute(message)
 
-    else if (message.content === prefix + sus.name) sus.execute(message, args)
+    else if (message.content === prefix + sus.name) sus.execute(message)
 
-    else if (message.content === prefix + tutao.name) tutao.execute(message, args)
+    else if (message.content === prefix + tutao.name) tutao.execute(message)
 
     else if (message.content === `${prefix}angola`) { message.channel.send('Onde o bruno mora') }
 
