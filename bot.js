@@ -4,12 +4,6 @@ const { options } = require('nodemon/lib/config')
 dotenv.config()
 const prefix = process.env.PREFIX
 
-
-//                 *IMPORTANT*
-//  DON'T FORGET TO EDIT THE .env FILE TO SET THE
-//     BOT TOKEN AND THE PREFIX FOR THE BOT.
-
-
 const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
@@ -23,27 +17,50 @@ function sleep(ms) {
 
 const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
 
-client.on("ready", () => { console.log('\x1b[42m', 'Bot Loaded', "\x1b[0m") })
+//Piadas
+let piadas = [
+    '**O que que tem 50 pernas e não anda?**\n25 Cadeirantes.',
+    '**Por que que o menino caiu do balanço?**\nPorque eu cortei as pernas dele.',
+    '**Qual foi a última coisa que passou pela cabeça da princesa Diana?**\nO rádio.',
+    '**Porque é que não existem medicamentos na Etiópia?**\nPorque não podem ser tomados em jejum.',
+    '**Qual a diferença entre um padre e um tenista?**\nAs bolas com que o tenista brinca têm pelinhos.',
+    '**Qual é a parte mais dura de um vegetal?**\nA cadeira de rodas.',
+    '**O que faz um leproso no banho?**\nNestum.',
+    '** Porque é que a Anne Frank não acabou o diário?**\nProblemas de concentração.',
+    '**Porque é que o Hitler se suicidou?**\nPorque viu a conta do gás.',
+    '**O que se chama a dois sem-abrigos a atirar pedras um ao outro?**\nUma luta de almofadas.',
+    '**Sabias que sem árabes não tinha acontecido o 11/9?**\nTinha acontecido o XI/IX.',
+    '**Qual é a diferença entre uma pizza e um judeu?**\nA pizza quando vai ao forno não grita.',
+]
+
+client.on("ready", () => {
+    console.log('\x1b[42m', 'Bot Loaded', "\x1b[0m")
+    bot.api.applications(bot.user.id).guilds(guildId).commands.post({
+        data: {
+            name: "piada",
+            description: "Conta uma piada"
+        }
+    })
+})
+
+client.on("interactionCreate", async (interaction) => {
+    try {
+        if (!interaction.isCommand) return
+        if (interaction.user.bot) return
+        if (interaction.commandName === "piada") {
+            interaction.channel.send({
+                content: `${interaction.user}${piadas[random(0, piadas.length)]}`
+            })
+        }
+    } catch (err) {
+        console.log("Houve um erro com o slashCommand: 'piadas'")
+    }
+})
 
 client.on("messageCreate", (message) => {
     if (message.author.bot) return
 
     else if (message.content === `${prefix}piada`) {
-        let piadas = [
-            '**O que que tem 50 pernas e não anda?**\n25 Cadeirantes.',
-            '**Por que que o menino caiu do balanço?**\nPorque eu cortei as pernas dele.',
-            '**Qual foi a última coisa que passou pela cabeça da princesa Diana?**\nO rádio.',
-            '**Porque é que não existem medicamentos na Etiópia?**\nPorque não podem ser tomados em jejum.',
-            '**Qual a diferença entre um padre e um tenista?**\nAs bolas com que o tenista brinca têm pelinhos.',
-            '**Qual é a parte mais dura de um vegetal?**\nA cadeira de rodas.',
-            '**O que faz um leproso no banho?**\nNestum.',
-            '** Porque é que a Anne Frank não acabou o diário?**\nProblemas de concentração.',
-            '**Porque é que o Hitler se suicidou?**\nPorque viu a conta do gás.',
-            '**O que se chama a dois sem-abrigos a atirar pedras um ao outro?**\nUma luta de almofadas.',
-            '**Sabias que sem árabes não tinha acontecido o 11/9?**\nTinha acontecido o XI/IX.',
-            '**Qual é a diferença entre uma pizza e um judeu?**\nA pizza quando vai ao forno não grita.',
-
-        ]
         message.channel.send(piadas[random(0, piadas.length)])
     }
     else if (message.content === `${prefix}bruno`) {
@@ -57,7 +74,7 @@ client.on("messageCreate", (message) => {
             'Your link',
             'Your link',
             'Your link',
-            
+
             //copy and paste how many links you want. Don't forget the comma.
 
         ]
