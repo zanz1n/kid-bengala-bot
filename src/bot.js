@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const { Client, Intents, MessageEmbed } = require('discord.js')
 const fs = require('fs')
+const chalk = require('chalk')
 
 const dotenv = require('dotenv')
 
@@ -33,7 +34,7 @@ const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
 client.commands = new Discord.Collection
 
 client.on("ready", () => {
-    console.log('\x1b[42m', 'Bot Loaded', "\x1b[0m")
+    console.log(chalk.greeen('Bot Loaded'))
     client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post({
         data: {
             name: "help",
