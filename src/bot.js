@@ -2,8 +2,12 @@ const Discord = require('discord.js')
 const { Client, Intents, MessageEmbed } = require('discord.js')
 const fs = require('fs')
 const chalk = require('chalk')
-
 const dotenv = require('dotenv')
+
+const api_log_color = chalk.yellow
+const api_info_log_color = chalk.blue
+
+console.log(api_log_color('[bot-api]'), api_info_log_color('Starting ...'))
 
 const client = new Client({
     intents: [
@@ -34,7 +38,7 @@ const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
 client.commands = new Discord.Collection
 
 client.on("ready", () => {
-    console.log(chalk.greeen('Bot Loaded'))
+    console.log(api_log_color('[bot-api]'), api_info_log_color('Bot online!'))
     client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post({
         data: {
             name: "help",
@@ -44,6 +48,7 @@ client.on("ready", () => {
 })
 
 client.on("interactionCreate", async (interaction) => {
+    console.log(api_log_color('[bot-api]'), api_info_log_color(`${interaction.user.username} issued a slashCommand`))
     try {
         if (!interaction.isCommand()) return; if (interaction.user.bot) return
 

@@ -3,10 +3,6 @@
 ##      echo 'TOKEN="YOUR_BOT_TOKEN"' >>.env
 ##           OTHERWHISE WILL NOT WORK
 
-wget https://github.com/zanz1n/kid-bengala-bot/archive/refs/heads/main.zip &&
-    unzip main.zip &&
-    rm main.zip &&
-    cd kid-bengala-bot-main/src
 echo 'TOKEN="YOUR_BOT_TOKEN"' >>.env
 echo 'GUILDID="YOUR_GUILD_ID"' >>.env
 read -p "Are you sure that you want to deploy that container?(y/n)" CONT
