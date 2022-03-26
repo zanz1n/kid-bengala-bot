@@ -3,7 +3,6 @@ const { Client, Intents, MessageEmbed } = require('discord.js')
 const fs = require('fs')
 
 const dotenv = require('dotenv')
-const token = process.env.TOKEN
 
 const client = new Client({
     intents: [
@@ -86,4 +85,4 @@ client.on("messageCreate", (message) => {
     else if (message.content.startsWith(prefix)) { message.reply('Isso não é um comando, escreve direito primata') }
 })
 
-client.login(token)
+client.login(process.env.TOKEN)
