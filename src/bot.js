@@ -28,6 +28,7 @@ const bruno = require('./commands/bruno')
 const penis = require('./commands/penis')
 const sus = require('./commands/sus')
 const tutao = require('./commands/tutao')
+const gustavo = require('./commands/gustavo')
 
 const slashhelp = require('./slashcommands/help')
 const prefix = "k! "
@@ -68,6 +69,7 @@ client.on("messageCreate", (message) => {
     else if (message.content === prefix + penis.name) penis.execute(message)
     else if (message.content === prefix + sus.name) sus.execute(message)
     else if (message.content === prefix + tutao.name) tutao.execute(message)
+    else if (message.content === prefix + gustavo.name) tutao.execute(message)
 
     else if (message.content === `${prefix}angola`) { message.channel.send('Onde o bruno mora') }
     else if (message.content === `${prefix}gay`) { message.channel.send('Não pode gay no servidor, desculpe') }
@@ -80,7 +82,6 @@ client.on("messageCreate", (message) => {
     else if (message.content === `${prefix}creepin`) { message.channel.send('Outro semideus que ajudou na criacao do BOT (tem alseimer)') }
     else if (message.content === `${prefix}deus`) { message.channel.send('Não existe, mas aqui no server é o Izan') }
     else if (message.content === `${prefix}guizin`) { message.channel.send('Ta dormindo ate hoje') }
-    else if (message.content === `${prefix}gustavo`) { message.channel.send('Tijolo') }
     else if (message.content === `${prefix}genshinimpact`) { message.reply('É crime, vc vai ser banido se falar denovo') }
     else if (message.content === `${prefix}denis`) { message.channel.send('╭ᑎ╮') }
     else if (message.content === `${prefix}hel`) { message.reply('Escreve direito imbecil é Help') }
