@@ -12,7 +12,6 @@ const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_MEMBERS,
     ]
 })
 
@@ -32,6 +31,7 @@ client.commands = new Discord.Collection
 
 client.on("ready", () => {
     api.log('Bot online')
+    api.mem()
     client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post({
         data: {
             name: "help",
@@ -85,3 +85,6 @@ client.on("messageCreate", (message) => {
 })
 
 client.login(process.env.TOKEN)
+setInterval(() => {
+    api.mem()
+}, 20000)
