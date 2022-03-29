@@ -1,9 +1,8 @@
 const Discord = require('discord.js')
 const { Client, Intents, MessageEmbed } = require('discord.js')
-const fs = require('fs')
-const chalk = require('chalk')
 const dotenv = require('dotenv')
 const api = require('./apilogs')
+
 dotenv.config()
 
 api.log('Starting ...')
@@ -87,4 +86,4 @@ client.on("messageCreate", (message) => {
 client.login(process.env.TOKEN)
 setInterval(() => {
     api.mem()
-}, 20000)
+}, 3000)
