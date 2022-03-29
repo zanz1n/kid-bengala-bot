@@ -41,6 +41,7 @@ client.on("ready", () => {
 
 client.on("interactionCreate", async (interaction) => {
     api.log(`User ${interaction.user.username} issued a slashCommand`)
+    api.mem()
     try {
         if (!interaction.isCommand()) return; if (interaction.user.bot) return
 
@@ -52,7 +53,7 @@ client.on("interactionCreate", async (interaction) => {
 
 client.on("messageCreate", (message) => {
     if (message.author.bot) return
-
+    api.mem()
     if (message.content === prefix + help.name) help.execute(message)
     else if (message.content === prefix + piada.name) piada.execute(message)
     else if (message.content === prefix + pedro.name) pedro.execute(message)
@@ -84,6 +85,3 @@ client.on("messageCreate", (message) => {
 })
 
 client.login(process.env.TOKEN)
-setInterval(() => {
-    api.mem()
-}, 3000)
