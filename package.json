@@ -2,10 +2,10 @@
   "name": "kid-bengala",
   "version": "1.0.0",
   "description": "",
-  "main": "bot.js",
+  "main": "./src/bot.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon bot.js"
+    "dev": "nodemon ./src/bot.js"
   },
   "author": "",
   "license": "ISC",

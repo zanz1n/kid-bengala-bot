@@ -1,9 +1,8 @@
 const Discord = require('discord.js')
 const { Client, Intents, MessageEmbed } = require('discord.js')
-const dotenv = require('dotenv')
 const api = require('./apilogs')
 
-dotenv.config()
+require('dotenv').config()
 
 api.log('Starting ...')
 
@@ -11,6 +10,7 @@ const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGES
     ]
 })
 
@@ -22,6 +22,8 @@ const penis = require('./commands/penis')
 const sus = require('./commands/sus')
 const tutao = require('./commands/tutao')
 const gustavo = require('./commands/gustavo')
+const slashavatar = require('./slashcommands/avatar')
+const slashembed = require('./slashcommands/embed')
 
 const slashhelp = require('./slashcommands/help')
 const prefix = "k! "
@@ -29,12 +31,22 @@ const prefix = "k! "
 client.commands = new Discord.Collection
 
 client.on("ready", () => {
-    api.log('Bot online')
+    api.log(`Bot carregado como ${client.user.tag}`)
     api.mem()
     client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post({
         data: {
             name: "help",
             description: "Exibe todos os comandos do bot"
+        },
+        data: {
+            name: "avatar",
+            description: "Exibe o seu avatar",
+            options: [{ name: "user", description: "De quem deseja exibir o avatar", type: 6, required: false }]
+        },
+        data: {
+            name: "embed",
+            description: "Faz uma embed com o conteúdo digitado",
+            options: [{ name: "content", description: "O conteúdo que será exibido na embed", type: 3, required: true }]
         }
     })
 })
@@ -45,7 +57,9 @@ client.on("interactionCreate", async (interaction) => {
     try {
         if (!interaction.isCommand()) return; if (interaction.user.bot) return
 
-        if (interaction.commandName === slashhelp.name) slashhelp.execute(interaction)
+        else if (interaction.commandName === slashhelp.name) slashhelp.execute(interaction)
+        else if (interaction.commandName === slashavatar.name) slashavatar.execute(interaction)
+        else if (interaction.commandName === slashembed.name) slashembed.execute(interaction)
     } catch (err) {
         api.err('Something went wrong with the slashCommand help')
     }
