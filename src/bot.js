@@ -24,16 +24,17 @@ const tutao = require('./commands/tutao')
 const gustavo = require('./commands/gustavo')
 const slashavatar = require('./slashcommands/avatar')
 const slashembed = require('./slashcommands/embed')
-
 const slashhelp = require('./slashcommands/help')
-const prefix = "k! "
+const { description } = require('./commands/help')
 
+const prefix = "k! "
 client.commands = new Discord.Collection
 
 client.on("ready", () => {
+    function slashcmd(guilds) { return client.api.applications(client.user.id).guilds(guilds) }
     api.log(`Bot carregado como ${client.user.tag}`)
     api.mem()
-    client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post({
+    slashcmd(process.env.GUILDID).commands.post({
         data: {
             name: "help",
             description: "Exibe todos os comandos do bot"
@@ -41,12 +42,16 @@ client.on("ready", () => {
         data: {
             name: "avatar",
             description: "Exibe o seu avatar",
-            options: [{ name: "user", description: "De quem deseja exibir o avatar", type: 6, required: false }]
+            options: [{ name: "user", description: "Pessoa para ver o avatar", type: 6, required: false }]
         },
         data: {
             name: "embed",
             description: "Faz uma embed com o conteúdo digitado",
-            options: [{ name: "content", description: "O conteúdo que será exibido na embed", type: 3, required: true }]
+            options: [
+                { name: "title", description: "O título da embed", type: 3, required: true },
+                { name: "field-title", description: "O título do campo da embed", type: 3, required: true },
+                { name: "field-body", description: "O corpo do campo da embed", type: 3, required: true }
+            ]
         }
     })
 })
@@ -57,23 +62,8 @@ client.on("interactionCreate", async (interaction) => {
     try {
         if (!interaction.isCommand()) return; if (interaction.user.bot) return
         else if (interaction.commandName === slashhelp.name) slashhelp.execute(interaction)
-        else if (interaction.commandName === "embed") {
-            const embed = new MessageEmbed().setColor(interaction.member.displayHexColor)
-                .setTitle(interaction.options._hoistedOptions.find(f => f.name === "content").value)
-                .setFooter({ text: `Requisitado por: ${interaction.user.username}`, iconURL: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp` })
-            await interaction.reply({ embeds: [embed] }) //await
-        }
-        else if (interaction.commandName === "avatar") {
-            const options = interaction.options._hoistedOptions
-            const user = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").member.user) || interaction.user
-            const member = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").memebr) || interaction.member
-
-            const embed = new MessageEmbed().setColor(member.displayHexColor)
-            const image = user.displayAvatarURL({ dynamic: true, size: 512 })
-
-            embed.setAuthor(user.username, user.displayAvatarURL()).setImage(image).setFooter({ text: `Requisitado por: ${interaction.user.username}`, iconURL: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp` }).setTimestamp()
-            await interaction.reply({ embeds: [embed] }) //await
-        }
+        else if (interaction.commandName === slashembed.name) slashembed.execute(interaction)
+        else if (interaction.commandName === slashavatar.name) slashavatar.execute(interaction)
     } catch (err) {
         api.err('Something went wrong with the slashCommand help')
     }
