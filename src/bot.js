@@ -31,18 +31,15 @@ const prefix = "k! "
 client.commands = new Discord.Collection
 
 client.on("ready", () => {
-    function slashcmd(guilds) { return client.api.applications(client.user.id).guilds(guilds) }
+    function slashcmd(GuildId) {
+        client.api.applications(client.user.id).guilds(GuildId)
+    }
     api.log(`Bot carregado como ${client.user.tag}`)
     api.mem()
-    slashcmd(process.env.GUILDID).commands.post({
+    client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post({
         data: {
             name: "help",
             description: "Exibe todos os comandos do bot"
-        },
-        data: {
-            name: "avatar",
-            description: "Exibe o seu avatar",
-            options: [{ name: "user", description: "Pessoa para ver o avatar", type: 6, required: false }]
         },
         data: {
             name: "embed",
@@ -53,6 +50,13 @@ client.on("ready", () => {
                 { name: "field-body", description: "O corpo do campo da embed", type: 3, required: true }
             ]
         }
+    })
+    slashcmd(process.env.GUILDID).commands.post({
+        data: {
+            name: "avatar",
+            description: "Exibe o seu avatar",
+            options: [{ name: "user", description: "Pessoa para ver o avatar", type: 6, required: false }]
+        },
     })
 })
 

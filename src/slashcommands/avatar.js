@@ -12,7 +12,9 @@ module.exports = {
         const embed = new MessageEmbed().setColor(member.displayHexColor)
         const image = user.displayAvatarURL({ dynamic: true, size: 512 })
 
-        embed.setAuthor(user.username, user.displayAvatarURL()).setImage(image).setFooter({ text: `Requisitado por: ${interaction.user.username}`, iconURL: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp` }).setTimestamp()
+        embed.setAuthor("Avatar de " + user.username, user.displayAvatarURL()).setImage(image)
+            .setFooter({ text: `Requisitado por ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL() })
+            .setTimestamp().setTitle("Ver Original")
         await interaction.reply({ embeds: [embed] }) //await
     }
 }
