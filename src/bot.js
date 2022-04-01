@@ -14,33 +14,25 @@ const client = new Client({
     ]
 })
 
-const help = require('./commands/help')
-const piada = require('./commands/piada')
-const pedro = require('./commands/pedro')
-const bruno = require('./commands/bruno')
-const penis = require('./commands/penis')
-const sus = require('./commands/sus')
-const tutao = require('./commands/tutao')
-const gustavo = require('./commands/gustavo')
-const slashavatar = require('./slashcommands/avatar')
-const slashembed = require('./slashcommands/embed')
-const slashhelp = require('./slashcommands/help')
-const { description } = require('./commands/help')
+const help = require('./commands/help'); const piada = require('./commands/piada'); const pedro = require('./commands/pedro'); const bruno = require('./commands/bruno')
+const penis = require('./commands/penis'); const sus = require('./commands/sus'); const tutao = require('./commands/tutao'); const gustavo = require('./commands/gustavo')
+const slashavatar = require('./slashcommands/avatar'); const slashembed = require('./slashcommands/embed'); const slashhelp = require('./slashcommands/help')
 
 const prefix = "k! "
 client.commands = new Discord.Collection
 
 client.on("ready", () => {
-    function slashcmd(GuildId) {
-        client.api.applications(client.user.id).guilds(GuildId)
-    }
+    const slashcmd = client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post
+
     api.log(`Bot carregado como ${client.user.tag}`)
     api.mem()
-    client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post({
+    slashcmd({
         data: {
             name: "help",
             description: "Exibe todos os comandos do bot"
-        },
+        }
+    })
+    slashcmd({
         data: {
             name: "embed",
             description: "Faz uma embed com o conteúdo digitado",
@@ -51,7 +43,7 @@ client.on("ready", () => {
             ]
         }
     })
-    slashcmd(process.env.GUILDID).commands.post({
+    slashcmd({
         data: {
             name: "avatar",
             description: "Exibe o seu avatar",

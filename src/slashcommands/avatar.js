@@ -10,11 +10,11 @@ module.exports = {
         const member = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").memebr) || interaction.member
 
         const embed = new MessageEmbed().setColor(member.displayHexColor)
-        const image = user.displayAvatarURL({ dynamic: true, size: 512 })
+        const image = user.displayAvatarURL({ dynamic: true, size: 2048 })
 
         embed.setAuthor("Avatar de " + user.username, user.displayAvatarURL()).setImage(image)
             .setFooter({ text: `Requisitado por ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL() })
-            .setTimestamp().setTitle("Ver Original")
+            .setTimestamp().setDescription(`[Ver Original](${user.displayAvatarURL({ format: 'png' })})`)
         await interaction.reply({ embeds: [embed] }) //await
     }
 }
