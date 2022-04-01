@@ -57,8 +57,13 @@ client.on("interactionCreate", async (interaction) => {
     try {
         if (!interaction.isCommand()) return; if (interaction.user.bot) return
         else if (interaction.commandName === slashhelp.name) slashhelp.execute(interaction)
-        else if (interaction.commandName === slashavatar.name) slashavatar.execute(interaction)
-        else if (interaction.commandName === slashembed.name) {
+        else if (interaction.commandName === "embed") {
+            const embed = new MessageEmbed().setColor(interaction.member.displayHexColor)
+                .setTitle(interaction.options._hoistedOptions.find(f => f.name === "content").value)
+                .setFooter({ text: `Requisitado por: ${interaction.user.username}`, iconURL: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp` })
+            await interaction.reply({ embeds: [embed] }) //await
+        }
+        else if (interaction.commandName === "avatar") {
             const options = interaction.options._hoistedOptions
             const user = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").member.user) || interaction.user
             const member = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").memebr) || interaction.member
@@ -67,7 +72,7 @@ client.on("interactionCreate", async (interaction) => {
             const image = user.displayAvatarURL({ dynamic: true, size: 512 })
 
             embed.setAuthor(user.username, user.displayAvatarURL()).setImage(image).setFooter({ text: `Requisitado por: ${interaction.user.username}`, iconURL: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp` }).setTimestamp()
-            interaction.reply({ embeds: [embed] }) //await
+            await interaction.reply({ embeds: [embed] }) //await
         }
     } catch (err) {
         api.err('Something went wrong with the slashCommand help')
