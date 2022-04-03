@@ -1,5 +1,4 @@
-const Discord = require('discord.js')
-const { Client, Intents, MessageEmbed } = require('discord.js')
+const { Discord, Client, Intents, MessageEmbed } = require('discord.js')
 
 module.exports = {
     name: "avatar",

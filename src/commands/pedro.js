@@ -1,12 +1,10 @@
 const { Discord, Client, Intents, MessageEmbed } = require('discord.js')
-const { execute } = require('./help')
-
-const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
 
 module.exports = {
     name: "pedro",
     description: "Pedro algumacoisa",
-    execute(message, args) {
+    async execute(message, args) {
+        const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
         const pedrolinks = [
             'https://cdn.discordapp.com/attachments/949789629119348756/955195762910838804/EnzcewMXIAIwJ8_.png',
             'https://cdn.discordapp.com/attachments/949789629119348756/955196121704173588/kvYlqk8Mph-53gZxp1k1UgSx_R3jn77KLKwf-vCeBrg.png',
@@ -15,6 +13,6 @@ module.exports = {
             'https://cdn.discordapp.com/attachments/949789629119348756/955197069453303838/ElRBn9gWoAI1L9z.png',
             'https://cdn.discordapp.com/attachments/949789629119348756/955197388174286848/pedro-piadas-webchurrasco.png',
         ]
-        message.channel.send(pedrolinks[random(0, pedrolinks.length)])
+        await message.channel.send(pedrolinks[random(0, pedrolinks.length)])
     }
 }

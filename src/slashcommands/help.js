@@ -3,7 +3,7 @@ const { Discord, Client, Intents, MessageEmbed } = require('discord.js')
 module.exports = {
     name: "help",
     description: "The help command",
-    execute(interaction) {
+    async execute(interaction) {
         const embed = {
             color: 0x0099ff,
             title: 'Comandos do bot:',
@@ -100,6 +100,6 @@ module.exports = {
                 icon_url: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp`,
             },
         }
-        interaction.reply({ embeds: [embed], ephemeral: true })
+        await interaction.reply({ embeds: [embed], ephemeral: true })
     }
 }

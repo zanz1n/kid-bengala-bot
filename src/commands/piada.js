@@ -1,12 +1,11 @@
 const { Discord, Client, Intents, MessageEmbed } = require('discord.js')
 
-const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
-
 module.exports = {
     name: "piada",
     description: "conta uma piada",
-    execute(message, args) {
-        let piadas = [
+    async execute(message, args) {
+        const random = (min, max) => Math.floor(Math.random() * (max - min) + min)
+        const piadas = [
             '**O que que tem 50 pernas e não anda?**\n25 Cadeirantes.',
             '**Por que que o menino caiu do balanço?**\nPorque eu cortei as pernas dele.',
             '**Qual foi a última coisa que passou pela cabeça da princesa Diana?**\nO rádio.',

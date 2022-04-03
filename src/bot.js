@@ -14,9 +14,8 @@ const client = new Client({
     ]
 })
 
-const help = require('./commands/help'); const piada = require('./commands/piada'); const pedro = require('./commands/pedro'); const bruno = require('./commands/bruno')
-const penis = require('./commands/penis'); const sus = require('./commands/sus'); const tutao = require('./commands/tutao'); const gustavo = require('./commands/gustavo')
-const slashavatar = require('./slashcommands/avatar'); const slashembed = require('./slashcommands/embed'); const slashhelp = require('./slashcommands/help')
+const commands = { help: require('./commands/help'), piada: require('./commands/piada'), pedro: require('./commands/pedro'), bruno: require('./commands/bruno'), penis: require('./commands/penis'), sus: require('./commands/sus'), tutao: require('./commands/tutao'), gustavo: require('./commands/gustavo'), }
+const slashcmds = { avatar: require('./slashcommands/avatar'), emdeb: require('./slashcommands/embed'), help: require('./slashcommands/help') }
 
 const prefix = "k! "
 client.commands = new Discord.Collection
@@ -24,8 +23,7 @@ client.commands = new Discord.Collection
 client.on("ready", () => {
     const slashcmd = client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post
     client.user.setUsername("Kid Bengala")
-    client.user.setActivity(`type ${prefix}${help.name}`, { type: "PLAYING" })
-    client.user.setAvatar("./src/bot-image.png")
+    client.user.setActivity(`type ${prefix}${commands.help.name}`, { type: "PLAYING" })
     api.log(`Bot carregado como ${client.user.tag}`)
     api.mem()
     slashcmd({
@@ -59,25 +57,24 @@ client.on("interactionCreate", async (interaction) => {
     api.mem()
     try {
         if (!interaction.isCommand()) return; if (interaction.user.bot) return
-        else if (interaction.commandName === slashhelp.name) slashhelp.execute(interaction)
-        else if (interaction.commandName === slashembed.name) slashembed.execute(interaction)
-        else if (interaction.commandName === slashavatar.name) slashavatar.execute(interaction)
+        else if (interaction.commandName === slashcmds.help.name) slashcmds.help.execute(interaction)
+        else if (interaction.commandName === slashcmds.emdeb.name) slashcmds.emdeb.execute(interaction)
+        else if (interaction.commandName === slashcmds.avatar.name) slashcmds.avatar.execute(interaction)
     } catch (err) {
-        api.err('Something went wrong with the slashCommand help')
+        api.err('Something went wrong with a slashCommand')
     }
 })
 
-client.on("messageCreate", (message) => {
+client.on("messageCreate", async (message) => {
     if (message.author.bot) return
-    api.mem()
-    if (message.content === prefix + help.name) help.execute(message)
-    else if (message.content === prefix + piada.name) piada.execute(message)
-    else if (message.content === prefix + pedro.name) pedro.execute(message)
-    else if (message.content === prefix + bruno.name) bruno.execute(message)
-    else if (message.content === prefix + penis.name) penis.execute(message)
-    else if (message.content === prefix + sus.name) sus.execute(message)
-    else if (message.content === prefix + tutao.name) tutao.execute(message)
-    else if (message.content === prefix + gustavo.name) gustavo.execute(message)
+    if (message.content === prefix + commands.help.name) await commands.help.execute(message)
+    else if (message.content === prefix + commands.piada.name) await commands.piada.execute(message)
+    else if (message.content === prefix + commands.pedro.name) await commands.pedro.execute(message)
+    else if (message.content === prefix + commands.bruno.name) await commands.bruno.execute(message)
+    else if (message.content === prefix + commands.penis.name) await commands.penis.execute(message)
+    else if (message.content === prefix + commands.sus.name) await commands.sus.execute(message)
+    else if (message.content === prefix + commands.tutao.name) await commands.tutao.execute(message)
+    else if (message.content === prefix + commands.gustavo.name) await commands.gustavo.execute(message)
 
     else if (message.content === `${prefix}angola`) { message.channel.send('Onde o bruno mora') }
     else if (message.content === `${prefix}gay`) { message.channel.send('Não pode gay no servidor, desculpe') }
