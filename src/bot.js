@@ -25,7 +25,7 @@ client.on("ready", () => {
     const slashcmd = client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post
     client.user.setUsername("Kid Bengala")
     client.user.setActivity(`type ${prefix}${help.name}`, { type: "PLAYING" })
-    client.user.setAvatar("https://cdn.discordapp.com/avatars/947893665379016724/f6c5d16a7230cd652bc26b4f29902541.png")
+    client.user.setAvatar("./src/bot-image.png")
     api.log(`Bot carregado como ${client.user.tag}`)
     api.mem()
     slashcmd({
