@@ -100,6 +100,6 @@ module.exports = {
                 icon_url: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp`,
             },
         }
-        interaction.reply({ embeds: [embed] })
+        interaction.reply({ embeds: [embed], ephemeral: true })
     }
 }
