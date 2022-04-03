@@ -90,7 +90,7 @@ client.on("messageCreate", (message) => {
     else if (message.content === `${prefix}creepin`) { message.channel.send('Outro semideus que ajudou na criacao do BOT (tem alseimer)') }
     else if (message.content === `${prefix}deus`) { message.channel.send('Não existe, mas aqui no server é o Izan') }
     else if (message.content === `${prefix}guizin`) { message.channel.send('Ta dormindo ate hoje') }
-    else if (message.content === `${prefix}genshinimpact`) { message.reply('É crime, vc vai ser banido se falar denovo') }
+    else if (message.content === `${prefix}genshinimpact`) { message.reply('É crime, vc vai ser banido se falar denovo\n```diff\n-Você foi avisado ' + message.author.username + '```') }
     else if (message.content === `${prefix}denis`) { message.channel.send('╭ᑎ╮') }
     else if (message.content === `${prefix}hel`) { message.reply('Escreve direito imbecil é Help') }
     else if (message.content === `${prefix}luciano`) { message.reply('**Nyan cat**\nConsta na fila do ban no server') }
