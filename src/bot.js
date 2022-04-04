@@ -6,6 +6,8 @@ require('dotenv').config()
 
 api.log('Starting ...')
 
+const config = require("./config.json")
+
 const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
@@ -22,8 +24,8 @@ client.commands = new Discord.Collection
 
 client.on("ready", async () => {
     const slashcmd = client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post
-    client.user.setUsername("Kid Bengala")
-    client.user.setActivity(`type ${prefix}${commands.help.name}`, { type: "PLAYING" })
+    await client.user.setUsername(config.name)
+    await client.user.setActivity(config.activity, { type: "PLAYING" })
     api.log(`Bot carregado como ${client.user.tag}`)
     api.mem()
     slashcmd({
