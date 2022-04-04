@@ -19,6 +19,6 @@ module.exports = {
             '**Sabias que sem árabes não tinha acontecido o 11/9?**\nTinha acontecido o XI/IX.',
             '**Qual é a diferença entre uma pizza e um judeu?**\nA pizza quando vai ao forno não grita.',
         ]
-        message.channel.send(piadas[random(0, piadas.length)])
+        await message.channel.send(piadas[random(0, piadas.length)])
     }
 }

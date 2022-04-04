@@ -19,13 +19,13 @@ const client = new Client({
 const commands = { help: require('./commands/help'), piada: require('./commands/piada'), pedro: require('./commands/pedro'), bruno: require('./commands/bruno'), penis: require('./commands/penis'), sus: require('./commands/sus'), tutao: require('./commands/tutao'), gustavo: require('./commands/gustavo'), }
 const slashcmds = { avatar: require('./slashcommands/avatar'), emdeb: require('./slashcommands/embed'), help: require('./slashcommands/help'), ping: require('./slashcommands/ping'), github: require('./slashcommands/github') }
 
-const prefix = "k! "
+const prefix = config.prefix
 client.commands = new Discord.Collection
 
 client.on("ready", async () => {
-    const slashcmd = client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post
+    const slashcmd = client.api.applications(client.user.id).guilds(config.guild).commands.post
     await client.user.setUsername(config.name)
-    await client.user.setActivity(config.activity, { type: "PLAYING" })
+    client.user.setActivity(config.activity, { type: "PLAYING" })
     api.log(`Bot carregado como ${client.user.tag}`)
     api.mem()
     slashcmd({
@@ -71,7 +71,7 @@ client.on("interactionCreate", async (interaction) => {
     api.log(`User ${interaction.user.username} issued a slashCommand`)
     api.mem()
     try {
-        if (!interaction.isCommand()) return; if (interaction.user.bot) return
+        if (!interaction.isCommand() || interaction.user.bot) return
         else if (interaction.commandName === slashcmds.help.name) slashcmds.help.execute(interaction)
         else if (interaction.commandName === slashcmds.emdeb.name) slashcmds.emdeb.execute(interaction)
         else if (interaction.commandName === slashcmds.avatar.name) slashcmds.avatar.execute(interaction)
@@ -114,4 +114,4 @@ client.on("messageCreate", async (message) => {
     else if (message.content.startsWith(prefix)) { message.reply('Isso não é um comando, escreve direito primata') }
 })
 
-client.login(process.env.TOKEN)
+client.login(config.token)
