@@ -20,7 +20,7 @@ const slashcmds = { avatar: require('./slashcommands/avatar'), emdeb: require('.
 const prefix = "k! "
 client.commands = new Discord.Collection
 
-client.on("ready", () => {
+client.on("ready", async () => {
     const slashcmd = client.api.applications(client.user.id).guilds(process.env.GUILDID).commands.post
     client.user.setUsername("Kid Bengala")
     client.user.setActivity(`type ${prefix}${commands.help.name}`, { type: "PLAYING" })
