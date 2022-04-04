@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const { Client, Intents, MessageEmbed } = require('discord.js')
 const api = require('./apilogs')
-
+console.clear()
 require('dotenv').config()
 
 api.log('Starting ...')
@@ -15,7 +15,7 @@ const client = new Client({
 })
 
 const commands = { help: require('./commands/help'), piada: require('./commands/piada'), pedro: require('./commands/pedro'), bruno: require('./commands/bruno'), penis: require('./commands/penis'), sus: require('./commands/sus'), tutao: require('./commands/tutao'), gustavo: require('./commands/gustavo'), }
-const slashcmds = { avatar: require('./slashcommands/avatar'), emdeb: require('./slashcommands/embed'), help: require('./slashcommands/help') }
+const slashcmds = { avatar: require('./slashcommands/avatar'), emdeb: require('./slashcommands/embed'), help: require('./slashcommands/help'), ping: require('./slashcommands/ping'), github: require('./slashcommands/github') }
 
 const prefix = "k! "
 client.commands = new Discord.Collection
@@ -50,6 +50,19 @@ client.on("ready", () => {
             options: [{ name: "user", description: "Pessoa para ver o avatar", type: 6, required: false }]
         },
     })
+    slashcmd({
+        data: {
+            name: "ping",
+            description: "Responde com pong"
+        }
+    })
+    slashcmd({
+        data: {
+            name: "github",
+            description: "Mostra um perfil no github",
+            options: [{ name: "user", description: "O usuario que deseja buscar", type: 3, required: true }]
+        }
+    })
 })
 
 client.on("interactionCreate", async (interaction) => {
@@ -60,6 +73,8 @@ client.on("interactionCreate", async (interaction) => {
         else if (interaction.commandName === slashcmds.help.name) slashcmds.help.execute(interaction)
         else if (interaction.commandName === slashcmds.emdeb.name) slashcmds.emdeb.execute(interaction)
         else if (interaction.commandName === slashcmds.avatar.name) slashcmds.avatar.execute(interaction)
+        else if (interaction.commandName === slashcmds.ping.name) slashcmds.ping.execute(interaction)
+        else if (interaction.commandName === slashcmds.github.name) slashcmds.github.execute(interaction)
     } catch (err) {
         api.err('Something went wrong with a slashCommand')
     }
