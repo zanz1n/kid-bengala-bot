@@ -7,7 +7,7 @@ module.exports = {
         const embed = new MessageEmbed().setColor(interaction.member.displayHexColor)
             .setTitle(interaction.options._hoistedOptions.find(f => f.name === "title").value)
             .addField(interaction.options._hoistedOptions.find(f => f.name === "field-title").value, interaction.options._hoistedOptions.find(f => f.name === "field-body").value)
-            .setFooter({ text: `Requisitado por: ${interaction.user.username}`, iconURL: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp` })
-        await interaction.reply({ embeds: [embed] }) //await
+            .setFooter({ text: `Requisitado por: ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ format: 'png' }) })
+        await interaction.reply({ embeds: [embed] })
     }
 }

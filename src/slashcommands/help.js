@@ -97,7 +97,7 @@ module.exports = {
 
             footer: {
                 text: `Requested by: ${interaction.user.username}`,
-                icon_url: `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.webp`,
+                iconURL: interaction.user.displayAvatarURL({ format: 'png' }),
             },
         }
         await interaction.reply({ embeds: [embed], ephemeral: true })
