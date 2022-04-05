@@ -65,13 +65,6 @@ client.on("ready", async () => {
             options: [{ name: "user", description: "O usuario que deseja buscar", type: 3, required: true }]
         }
     })
-    slashcmd({
-        data: {
-            name: "testando04",
-            description: "Teste",
-            options: [{ name: "user", description: "O usuario que deseja buscar", type: 3, required: true }]
-        }
-    })
 })
 
 client.on("interactionCreate", async (interaction) => {
@@ -86,12 +79,6 @@ client.on("interactionCreate", async (interaction) => {
         else if (interaction.commandName === slashcmds.github.name) slashcmds.github.execute(interaction)
     } catch (err) {
         api.err('Something went wrong with a slashCommand')
-    }
-})
-
-client.on("interactionCreate", async (interaction) => {
-    if (interaction.commandName === "testando04") {
-        interaction.reply("Teste bem sucedido")
     }
 })
 
