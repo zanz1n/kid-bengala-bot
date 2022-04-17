@@ -15,4 +15,5 @@ Os comandos mais simples foram criados por um amigo meu, luigi, usando a base do
 <h2>Considerações:</h2>
 
 Os comandos possuem apenas um fim humorístico, não há intenção de ofender niguém.
+
 Se tiver alguma sujestão que possa me agregar conhecimento, mande dm para "zanz1n#1487" no discord. Ficarei muito grato.
